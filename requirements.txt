@@ -1,0 +1,23 @@
+# Flask y servidor web
+Flask>=2.3.0
+python-dotenv>=1.0.0
+
+# Procesamiento de imágenes y OCR
+opencv-python>=4.8.0
+easyocr>=1.7.0
+numpy>=1.21.0,<2.0.0
+Pillow>=9.0.0
+
+# PyTorch (CPU por defecto, cambiar por versión GPU si es necesario)
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Utilidades
+requests>=2.31.0
+
+# Logging y monitoreo
+structlog>=23.0.0
+
+# Validación y seguridad
+marshmallow>=3.20.0
+cryptography>=41.0.0
