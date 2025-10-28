@@ -17,7 +17,6 @@ from queue import Queue, Empty
 from typing import Dict, Any, Optional, Union
 import json
 
-import cv2
 import easyocr
 import numpy as np
 import torch
@@ -171,16 +170,19 @@ def process_image_ocr(image_data: bytes, output_format: str = 'text') -> Dict[st
         Diccionario con el resultado del OCR
     """
     try:
-        # Decodificar imagen
-        np_arr = np.frombuffer(image_data, np.uint8)
-        img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+        # Decodificar imagen usando PIL
+        img = Image.open(io.BytesIO(image_data))
         
-        if img is None:
-            raise ValueError("No se pudo decodificar la imagen. Formato inválido.")
+        # Convertir a RGB si es necesario
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
         
-        results = reader.readtext(img, detail=1, paragraph=False)
+        # Convertir a numpy array para EasyOCR
+        img_array = np.array(img)
         
-        del img, np_arr
+        results = reader.readtext(img_array, detail=1, paragraph=False)
+        
+        del img, img_array
         cleanup_memory()
         
         if output_format == 'text':
