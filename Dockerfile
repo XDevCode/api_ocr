@@ -1,15 +1,13 @@
 FROM python:3.9-slim
 
-# Instalar dependencias del sistema para ARM
+# Instalar dependencias del sistema mínimas para ARM
 RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
     libxrender1 \
     libgomp1 \
-    libgl1-mesa-glx \
     libgthread-2.0-0 \
-    libgtk-3-0 \
     libjpeg62-turbo \
     libpng16-16 \
     libtiff5 \
