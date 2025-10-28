@@ -1,20 +1,9 @@
-FROM python:3.9-slim
+FROM arm64v8/python:3.9-slim
 
-# Instalar dependencias del sistema mínimas para ARM
+# Instalar dependencias básicas
 RUN apt-get update && apt-get install -y \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender1 \
-    libgomp1 \
-    libgthread-2.0-0 \
-    libjpeg62-turbo \
-    libpng16-16 \
-    libtiff5 \
-    libopenblas0 \
-    gfortran \
-    wget \
     curl \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Crear directorio de trabajo
