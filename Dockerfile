@@ -9,10 +9,7 @@ RUN apt-get update && apt-get install -y \
 # Crear directorio de trabajo
 WORKDIR /app
 
-# Crear directorio de logs con permisos correctos
-RUN mkdir -p /app/logs && chmod 777 /app/logs
-
-# Crear usuario no-root ANTES de copiar archivos
+# Crear usuario no-root
 RUN useradd -m -u 1000 appuser
 
 # Copiar archivos de dependencias

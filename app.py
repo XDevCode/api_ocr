@@ -84,29 +84,19 @@ app.config.from_object(Config)
 
 # Configurar logging
 def setup_logging():
-    """Configura el sistema de logging con rotación de archivos"""
-    from logging.handlers import RotatingFileHandler
-    
+    """Configura el sistema de logging solo en consola"""
     log_level = getattr(logging, Config.LOG_LEVEL.upper(), logging.INFO)
-    
-    file_handler = RotatingFileHandler(
-        Config.LOG_FILE,
-        maxBytes=Config.LOG_MAX_SIZE,
-        backupCount=Config.LOG_BACKUP_COUNT
-    )
-    file_handler.setLevel(log_level)
     
     formatter = logging.Formatter(
         '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
     )
-    file_handler.setFormatter(formatter)
     
-    app.logger.setLevel(log_level)
-    app.logger.addHandler(file_handler)
-    
+    # Solo usar consola para evitar problemas de permisos
     console_handler = logging.StreamHandler()
     console_handler.setLevel(log_level)
     console_handler.setFormatter(formatter)
+    
+    app.logger.setLevel(log_level)
     app.logger.addHandler(console_handler)
 
 # Inicializar logging
