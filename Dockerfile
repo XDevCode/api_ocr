@@ -9,6 +9,12 @@ RUN apt-get update && apt-get install -y \
 # Crear directorio de trabajo
 WORKDIR /app
 
+# Crear directorio de logs con permisos correctos
+RUN mkdir -p /app/logs && chmod 777 /app/logs
+
+# Crear usuario no-root ANTES de copiar archivos
+RUN useradd -m -u 1000 appuser
+
 # Copiar archivos de dependencias
 COPY requirements.txt .
 
@@ -18,11 +24,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar código de la aplicación
 COPY . .
 
-# Crear directorio de logs
-RUN mkdir -p /app/logs
+# Dar permisos correctos al usuario
+RUN chown -R appuser:appuser /app
 
-# Crear usuario no-root
-RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+# Cambiar a usuario no-root
 USER appuser
 
 # Exponer puerto
