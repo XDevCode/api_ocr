@@ -2,8 +2,8 @@
 Flask>=2.3.0
 python-dotenv>=1.0.0
 
-# Procesamiento de imágenes y OCR
-opencv-python>=4.8.0
+# Procesamiento de imágenes y OCR (versiones compatibles con ARM)
+opencv-python-headless>=4.8.0
 easyocr>=1.7.0
 numpy>=1.21.0,<2.0.0
 Pillow>=9.0.0

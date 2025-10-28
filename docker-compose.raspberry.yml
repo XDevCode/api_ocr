@@ -1,6 +1,8 @@
 services:
   ocr-api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.raspberry
     container_name: ocr-api-service
     ports:
       - "5000:5000"
