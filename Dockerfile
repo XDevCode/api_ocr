@@ -1,8 +1,8 @@
 FROM arm64v8/python:3.9-slim
 
-# Instalar dependencias necesarias para OpenCV en ARM
+# Instalar dependencias necesarias para OpenCV en ARM (versión compatible)
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
+    libgl1-mesa-dri \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
