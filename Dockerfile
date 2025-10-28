@@ -1,9 +1,21 @@
 FROM arm64v8/python:3.9-slim
 
-# Instalar dependencias básicas
+# Instalar dependencias necesarias para OpenCV en ARM
 RUN apt-get update && apt-get install -y \
-    curl \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    libgomp1 \
+    libgthread-2.0-0 \
+    libjpeg62-turbo \
+    libpng16-16 \
+    libtiff6 \
+    libopenblas0 \
+    gfortran \
     wget \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Crear directorio de trabajo
